@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Sourav Mandal">
+    <meta name="keywords" content="College Enrollment, Registration Form, HTML, CSS, JavaScript">
+    <title>College Enrollment Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        h2 {
+            text-align: center;
+            color: #4CAF50;
+            width: 100%;
+        }
+
+        .form-container, .enrolled-students {
+            width: 48%;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="url"],
+        input[type="file"],
+        input[type="date"],
+        input[type="number"],
+        input[type="tel"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .gender-options,
+        .course-options {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .gender-options input,
+        .course-options input {
+            margin-right: 5px;
+        }
+
+        .btn {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .enroll {
+            background-color: #4CAF50;
+            color: #fff;
+            margin-right: 10px;
+        }
+
+        .clear {
+            background-color: #f44336;
+            color: #fff;
+        }
+
+        .enrolled-students {
+            border-left: 2px solid #4CAF50;
+            padding-left: 20px;
+        }
+
+        .enrolled-students h3 {
+            color: #4CAF50;
+        }
+
+        .student {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+            align-items: center;
+            background-color: #f9f9f9;
+            margin-bottom: 10px;
+            border-left: 5px solid #4CAF50;
+            border-radius: 5px;
+        }
+
+.student img {
+    max-width: 150px;
+    height: auto;
+    border-radius: 0; /* Remove the border-radius to make it box-shaped */
+    border: 2px solid #4CAF50; /* Optional: you can keep or remove the border */
+}
+
+
+        .student-info {
+            flex-grow: 1;
+            margin-left: 10px;
+        }
+
+        .student-info p {
+            margin: 5px 0;
+        }
+                #otherBoardContainer {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>College Enrollment Form</h2>
+        <div class="form-container">
+            <form id="enrollmentForm">
+                <label for="studentId">Student ID</label>
+                <input type="number" id="studentId" name="studentId" required>
+
+                <label for="name">Full Name</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" name="phone" required>
+
+                <label for="address">Address</label>
+                <textarea id="address" name="address" rows="3" required></textarea>
+
+                <label for="dob">Date of Birth</label>
+                <input type="date" id="dob" name="dob" required>
+
+                <label for="image">Add Image</label>
+                <input type="file" id="image" name="image" accept="image/*">
+
+                <label>Gender</label>
+                <div class="gender-options">
+                    <input type="radio" id="male" name="gender" value="Male" required>
+                    <label for="male">Male</label>
+                    <input type="radio" id="female" name="gender" value="Female">
+                    <label for="female">Female</label>
+                    <input type="radio" id="other" name="gender" value="Other">
+                    <label for="other">Other</label>
+                </div>
+
+                <label for="course">Course</label>
+                <select id="course" name="course" required>
+                    <option value="Computer Science">Computer Science</option>
+                    <option value="Mechanical Engineering">Mechanical Engineering</option>
+                    <option value="Civil Engineering">Civil Engineering</option>
+                    <option value="Electrical Engineering">Electrical Engineering</option>
+                    <option value="Electronics and Communication">Electronics and Communication</option>
+                </select>
+
+                <label for="year">Year of Study</label>
+                <select id="year" name="year" required>
+                    <option value="1st Year">1st Year</option>
+                    <option value="2nd Year">2nd Year</option>
+                    <option value="3rd Year">3rd Year</option>
+                    <option value="4th Year">4th Year</option>
+                </select>
+
+                <label for="board">Select Board</label>
+                <select id="board" name="board" required onchange="showOtherBoard()">
+                    <option value="CBSE">CBSE</option>
+                    <option value="ICSE">ICSE</option>
+                    <option value="State Board">State Board</option>
+                    <option value="Others">Others</option>
+                </select>
+
+                <div id="otherBoardContainer">
+                    <label for="otherBoard">Other Board Name</label>
+                    <input type="text" id="otherBoard" name="otherBoard">
+                </div>
+
+                <label for="percentage">Higher Secondary Percentage</label>
+                <input type="number" id="percentage" name="percentage" step="0.01" required>
+
+                <label for="activities">Extracurricular Activities</label>
+                <textarea id="activities" name="activities" rows="3"></textarea>
+
+                <button type="submit" class="btn enroll">Enroll Student</button>
+                <button type="reset" class="btn clear">Clear</button>
+            </form>
+        </div>
+        <div class="enrolled-students">
+            <h3>Enrolled Students</h3>
+            <div id="studentList"></div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('enrollmentForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const studentId = document.getElementById('studentId').value;
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const address = document.getElementById('address').value;
+            const dob = document.getElementById('dob').value;
+            const gender = document.querySelector('input[name="gender"]:checked').value;
+            const course = document.getElementById('course').value;
+            const year = document.getElementById('year').value;
+            const board = document.getElementById('board').value === 'Others' ? document.getElementById('otherBoard').value : document.getElementById('board').value;
+            const percentage = document.getElementById('percentage').value;
+            const activities = document.getElementById('activities').value;
+
+            const studentList = document.getElementById('studentList');
+
+            const studentDiv = document.createElement('div');
+            studentDiv.classList.add('student');
+
+            const studentInfo = document.createElement('div');
+            studentInfo.classList.add('student-info');
+            studentInfo.innerHTML = `
+                <p><strong>Student ID:</strong> ${studentId}</p>
+                <p><strong>Name:</strong> ${name}</p>
+                <p><strong>Email:</strong> <a href="mailto:${email}">${email}</a></p>
+                <p><strong>Phone:</strong> ${phone}</p>
+                <p><strong>Address:</strong> ${address}</p>
+                <p><strong>Date of Birth:</strong> ${dob}</p>
+                <p><strong>Gender:</strong> ${gender}</p>
+                <p><strong>Course:</strong> ${course}</p>
+                <p><strong>Year of Study:</strong> ${year}</p>
+                <p><strong>Board:</strong> ${board}</p>
+                <p><strong>Higher Secondary Percentage:</strong> ${percentage}%</p>
+                <p><strong>Extracurricular Activities:</strong> ${activities}</p>
+            `;
+
+            const studentImage = document.createElement('img');
+            const imageInput = document.getElementById('image');
+            const imageFile = imageInput.files[0];
+            if (imageFile) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    studentImage.src = e.target.result;
+                }
+                reader.readAsDataURL(imageFile);
+            } else {
+                studentImage.src = 'https://via.placeholder.com/50';
+            }
+            studentImage.alt = 'Student Image';
+
+            studentDiv.appendChild(studentInfo);
+            studentDiv.appendChild(studentImage);
+
+            studentList.appendChild(studentDiv);
+
+            document.getElementById('enrollmentForm').reset();
+            document.getElementById('otherBoardContainer').style.display = 'none';
+        });
+
+        function showOtherBoard() {
+            const board = document.getElementById('board').value;
+            const otherBoardContainer = document.getElementById('otherBoardContainer');
+            if (board === 'Others') {
+                otherBoardContainer.style.display = 'block';
+            } else {
+                otherBoardContainer.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>
